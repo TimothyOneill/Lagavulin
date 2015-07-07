@@ -1,4 +1,6 @@
 #pragma once
+#include <list>
+#include "Vector4.h"
 #include "math.h"
 #include "DirectXMath.h"
 
@@ -10,16 +12,14 @@ Simple Vector3 class based on 3D math primer.
 class Vector3 : public DirectX::XMFLOAT3
 {
 public:
-
     //Copy Constructor to copy 1 XMFLOAT3 into are wrapper.
-    Vector3(XMFLOAT3 &a) : x(a.x), y(a.y), z(a.z) {};
+    Vector3(XMFLOAT3 &a) { x = a.x, y = a.y, z = a.z; }
     //Default Constructor intializes to 0
     Vector3() : XMFLOAT3() { x = 0; y = 0; z = 0; };
     //Overloaded constructor for set values.
-    Vector3(const float x,const float y,const float z) : x(x), y(y), z(z) {};
+    Vector3(const float _x,const float _y,const float _z) { x = _x, y = _y, z = _z; }
     //Copy Constructor for vector4 into a vector3
-    //TODO: Vector4 implementation.
-    //Vector3(const class Vector4 &a) : x(a.x), y(a.y), z(a.z) {};
+    //Vector3(const Vector4 &a) { x = a.x; y = a.y; z = a.z; }
 
     //Overload the Assignment Operator
     Vector3 &operator =(const Vector3 &a);
@@ -83,8 +83,6 @@ public:
         DirectX::XMStoreFloat3(Out,DirectX::XMVector3Cross(DirectX::XMLoadFloat3(this), DirectX::XMLoadFloat3(&b)));
         return *Out;
     }
-
-    float x, y, z;
 };
 
 //scaler on left multiplication
@@ -93,6 +91,7 @@ inline Vector3 operator *(float k, const Vector3 &a)
     return Vector3(k*a.x, k*a.y, k*a.z);
 }
 //distance between 2 points
+/*
 float Distance(Vector3 &a, Vector3 &b)
 {
     float dx = a.x - b.x;
@@ -101,3 +100,5 @@ float Distance(Vector3 &a, Vector3 &b)
 
     return sqrt(dx*dx + dy*dy + dz*dz);
 }
+*/
+typedef std::list<Vector3> Vector3List;

@@ -1,4 +1,6 @@
 #pragma once
+#include <list>
+#include "Vector3.h"
 #include "math.h"
 #include "DirectXMath.h"
 
@@ -7,18 +9,17 @@ Author: Tim O'Neill 14/02/2015
 Simple Vector4 class based on 3D math primer.
 **/
 
-class Vector4 : DirectX::XMFLOAT4
+class Vector4 : public DirectX::XMFLOAT4
 {
-    public:
+public:
     //Copy Constructor to copy 1 XMFLOAT4 into are wrapper.
-    Vector4(XMFLOAT4 &a) : x(a.x), y(a.y), z(a.z), w(a.w) {};
+    Vector4(XMFLOAT4 &a) { x = a.x, y = a.y, z = a.z, w = a.w; };
     //Default Constructor intializes to 0
-    Vector4() : XMFLOAT4() { x = 0; y = 0; z = 0; w = 0; };
+    Vector4() : XMFLOAT4() { x = 0; y = 0; z = 0; w = 1; };
     //Overloaded constructor for set values.
-    Vector4(const float x,const float y,const float z, const float w) : x(x), y(y), z(z), w(w) {};
+    Vector4(const float _x,const float _y,const float _z, const float _w) { x = _x, y = _y, z = _z, w = _w; };
     //Copy Constructor for vector4 into a Vector4
-    //TODO: Vector4 implementation.
-    //Vector4(const class Vector4 &a) : x(a.x), y(a.y), z(a.z) {};
+    //Vector4(const Vector3 &a) { x = a.x; y = a.y; z = a.z; w = 1.0f; }
 
     //Overload the Assignment Operator
     Vector4 &operator =(const Vector4 &a);
@@ -74,14 +75,6 @@ class Vector4 : DirectX::XMFLOAT4
     {
         return DirectX::XMVectorGetX(DirectX::XMVector4Length(DirectX::XMLoadFloat4(this)));
     }
-
-    //Get the cross product of b against this
-    inline Vector4 CrossProduct(const Vector4 &b) const
-    {
-        Vector4* Out;
-        DirectX::XMStoreFloat4(Out,DirectX::XMVector4Cross(DirectX::XMLoadFloat4(this), DirectX::XMLoadFloat4(&b)));
-        return *Out;
-    }
-
-    float x, y, z, w;
 };
+
+typedef std::list<Vector4> Vector4List;
