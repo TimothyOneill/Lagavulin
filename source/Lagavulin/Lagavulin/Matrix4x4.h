@@ -103,13 +103,12 @@ class Matrix4x4 : public DirectX::XMFLOAT4X4
         DirectX::XMStoreFloat4x4(this, DirectX::XMMatrixRotationQuaternion(&q));
     }
     */
+
     inline void BuildRotationLookAt(const Vector3 &eye, const Vector3 &at, const Vector3 &up)
     {
         DirectX::XMStoreFloat4x4(this, DirectX::XMMatrixLookAtRH(DirectX::XMLoadFloat3(&eye),DirectX::XMLoadFloat3(&at),DirectX::XMLoadFloat3(&up)));
     }
 };
-
-const Matrix4x4 Matrix4x4::g_Identity(DirectX::XMFLOAT4X4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1));
 
 inline Matrix4x4 operator * (const Matrix4x4 &a, const Matrix4x4 &b)
 {
@@ -117,3 +116,5 @@ inline Matrix4x4 operator * (const Matrix4x4 &a, const Matrix4x4 &b)
     DirectX::XMStoreFloat4x4(Out,DirectX::XMMatrixMultiply(DirectX::XMLoadFloat4x4(&a),DirectX::XMLoadFloat4x4(&b)));
     return *Out;
 }
+
+//const Matrix4x4 Matrix4x4::g_Identity(DirectX::XMFLOAT4X4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1));
