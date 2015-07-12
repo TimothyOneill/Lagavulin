@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "../main/stdafx.h"
 #include "Plane.h"
 
 bool Plane::Inside(const Vector3 &point) const

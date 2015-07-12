@@ -1,6 +1,6 @@
 #pragma once
 #include "math.h"
-#include "Vector3.h"
+#include "../Math/Vector3.h"
 #include "DirectXMath.h"
 
 /**

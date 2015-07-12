@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "../main/stdafx.h"
 #include "Vector3.h"
 
 //Overload the Assignment Operator
@@ -97,3 +97,4 @@ float Vector3::operator *(const Vector3 &a) const
 {
     return DirectX::XMVectorGetX(DirectX::XMVector3Dot(DirectX::XMLoadFloat3(this),DirectX::XMLoadFloat3(this)));
 }
+

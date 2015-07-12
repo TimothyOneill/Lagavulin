@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "../main/stdafx.h"
 #include "Quaternion.h"
 
 void Quaternion::Normalize()

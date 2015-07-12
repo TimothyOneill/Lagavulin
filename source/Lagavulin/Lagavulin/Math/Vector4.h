@@ -1,8 +1,7 @@
 #pragma once
 #include <list>
-#include "Vector3.h"
-#include "math.h"
 #include "DirectXMath.h"
+#include "math.h"
 
 /**
 Author: Tim O'Neill 14/02/2015
@@ -15,11 +14,9 @@ public:
     //Copy Constructor to copy 1 XMFLOAT4 into are wrapper.
     Vector4(XMFLOAT4 &a) { x = a.x, y = a.y, z = a.z, w = a.w; };
     //Default Constructor intializes to 0
-    Vector4() : XMFLOAT4() { x = 0; y = 0; z = 0; w = 1; };
+    Vector4() : XMFLOAT4() { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; };
     //Overloaded constructor for set values.
-    Vector4(const float _x,const float _y,const float _z, const float _w) { x = _x, y = _y, z = _z, w = _w; };
-    //Copy Constructor for vector4 into a Vector4
-    //Vector4(const Vector3 &a) { x = a.x; y = a.y; z = a.z; w = 1.0f; }
+    Vector4(const float _x, const float _y, const float _z, const float _w) { x = _x, y = _y, z = _z, w = _w; };
 
     //Overload the Assignment Operator
     Vector4 &operator =(const Vector4 &a);

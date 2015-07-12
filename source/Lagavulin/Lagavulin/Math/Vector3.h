@@ -1,8 +1,7 @@
 #pragma once
 #include <list>
-#include "Vector4.h"
-#include "math.h"
 #include "DirectXMath.h"
+#include "math.h"
 
 /**
 Author: Tim O'Neill 14/02/2015
@@ -15,11 +14,9 @@ public:
     //Copy Constructor to copy 1 XMFLOAT3 into are wrapper.
     Vector3(XMFLOAT3 &a) { x = a.x, y = a.y, z = a.z; }
     //Default Constructor intializes to 0
-    Vector3() : XMFLOAT3() { x = 0; y = 0; z = 0; };
+    Vector3() : XMFLOAT3() { x = 0.0f; y = 0.0f; z = 0.0f; };
     //Overloaded constructor for set values.
     Vector3(const float _x,const float _y,const float _z) { x = _x, y = _y, z = _z; }
-    //Copy Constructor for vector4 into a vector3
-    //Vector3(const Vector4 &a) { x = a.x; y = a.y; z = a.z; }
 
     //Overload the Assignment Operator
     Vector3 &operator =(const Vector3 &a);
@@ -101,4 +98,9 @@ float Distance(Vector3 &a, Vector3 &b)
     return sqrt(dx*dx + dy*dy + dz*dz);
 }
 */
+
+extern Vector3 g_Up;
+extern Vector3 g_Right;
+extern Vector3 g_Forward;
+
 typedef std::list<Vector3> Vector3List;

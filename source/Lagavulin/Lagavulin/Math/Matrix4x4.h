@@ -1,5 +1,4 @@
 #pragma once
-#include "math.h"
 #include "Vector3.h"
 #include "Vector4.h"
 #include "DirectXMath.h"
@@ -11,6 +10,8 @@ Implementation of a 4x4 matrix wrapper around DirectX
 
 class Matrix4x4 : public DirectX::XMFLOAT4X4
 {
+public:
+    friend class Quaternion;
     static const Matrix4x4 g_Identity;
 
     Matrix4x4() : XMFLOAT4X4() {};
@@ -97,13 +98,13 @@ class Matrix4x4 : public DirectX::XMFLOAT4X4
         DirectX::XMStoreFloat4x4(this, DirectX::XMMatrixRotationRollPitchYaw(pitchRadians, yawRadians, rollRadians));
     }
 
+    //TODOShould the quaternion or matrix have ownership of building the rotation matrix
     /*
     inline void BuildRotationQuaternion(const Quaternion &q)
     {
-        DirectX::XMStoreFloat4x4(this, DirectX::XMMatrixRotationQuaternion(&q));
+        DirectX::XMStoreFloat4x4(this, DirectX::XMMatrixRotationQuaternion(DirectX::XMLoadFloat4(&q)));
     }
     */
-
     inline void BuildRotationLookAt(const Vector3 &eye, const Vector3 &at, const Vector3 &up)
     {
         DirectX::XMStoreFloat4x4(this, DirectX::XMMatrixLookAtRH(DirectX::XMLoadFloat3(&eye),DirectX::XMLoadFloat3(&at),DirectX::XMLoadFloat3(&up)));
